@@ -1,7 +1,6 @@
 import { IPropertiesId } from '../types';
 
 export const createIdsUrl = (ids: IPropertiesId[], page: number, limit: number) => {
-  console.log("ids to transform", ids, page);
   const fromItem: number = 0 + limit * page;
   const toItem: number = limit + limit * page;
   const ascendantPrice = ids

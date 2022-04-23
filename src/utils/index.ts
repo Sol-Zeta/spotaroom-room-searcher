@@ -1,3 +1,4 @@
 import { createIdsUrl } from './createIdsUrl';
+import { orderByPrice } from './orderByPrice';
 
-export { createIdsUrl };
+export { createIdsUrl, orderByPrice };
