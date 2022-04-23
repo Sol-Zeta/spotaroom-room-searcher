@@ -25,12 +25,20 @@ const Home: NextPage = () => {
     }
   }, [properties]);
 
+  useEffect(() => {
+
+  }, [lowestPriceFirst, propertiesType])
+  
+
   return (
     <div className={styles.container}>
       <Head />
       <main className={styles.main}>
         <section>
-
+          <button onClick={()=> setLowestPriceFirst(false)}>MÁS CAROS</button>
+          <button onClick={()=> setLowestPriceFirst(true)}>MÁS BARATOS</button>
+          <button onClick={()=> setPropertiesType('rooms')}>SOLO HABITACIONES</button>
+          <button onClick={()=> setPropertiesType('apartments')}>SOLO APARTAMENTOS</button>
         </section>
         <section>
           <article>
