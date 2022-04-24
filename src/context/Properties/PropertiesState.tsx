@@ -1,99 +1,141 @@
-import { useReducer, useEffect } from "react";
-import axios from "axios";
-import PropertiesReducer from "./PropertiesReducer";
-import PropertiesContext from "./PropertiesContext";
-import { createIdsUrl } from '../../utils';
+import { useReducer, useState, useEffect } from 'react';
+import axios from 'axios';
+import PropertiesReducer from './PropertiesReducer';
+import PropertiesContext from './PropertiesContext';
+import { IPropertiesId } from '../../types';
+import { createIdsUrl, createTypesUrl, orderByPrice } from '../../utils';
 const apiUrl = process.env.API_BASE_URL;
 interface Props {
   children: JSX.Element | JSX.Element[];
 }
+const initialState = {
+  isLoadingProperties: false,
+  propertiesIds: [],
+  properties: [],
+  selectedProperty: null,
+  priceOrder: 'asc',
+  typeFilter: [],
+  cityFilter: 'madrid',
+  page: 0,
+  itemsPerPage: 30,
+};
 
 const PropertiesState = ({ children }: Props) => {
-  const initialState = {
-    isLoadingProperties: true,
-    propertiesId: [],
-    properties: [],
-    selectedProperty: null,
-    priceOrder: 'asc',
-    typeFilter: '',
-    city: 'madrid'
-  };
-
   const [propertiesState, dispatch] = useReducer(
     PropertiesReducer,
     initialState
   );
 
-  const {propertiesId, properties, priceOrder, typeFilter} = propertiesState;
+  const {
+    propertiesIds,
+    properties,
+    priceOrder,
+    typeFilter,
+    cityFilter,
+    page,
+    itemsPerPage,
+  } = propertiesState;
 
- 
+  const setCityFilter = (cityFilter: string) =>
+    dispatch({ type: 'SET_CITY', payload: cityFilter.toLocaleLowerCase() });
+  const setPriceOrder = (priceOrder: string) =>
+    dispatch({ type: 'SET_PRICE_ORDER', payload: priceOrder });
+  const setTypeFilter = (typeFilter: string[]) =>
+    dispatch({ type: 'SET_TYPE_FILTER', payload: [...typeFilter] });
+  const setPage = (page: number) =>
+    dispatch({ type: 'SET_PAGE', payload: page });
+  const setItemsPerPage = (itemsPerPage: number) =>
+    dispatch({ type: 'SET_ITEMS_PER_PAGE', payload: itemsPerPage });
+
+  const getPropertiesIds = async (city: string = 'madrid', order: string, type: string) => {
   
-  const setCity = (city:string) => dispatch({...propertiesState, city})
-
-  const getPropertiesIds = async (city: string = 'madrid') => {
-    const response = await axios.get(
-      `${apiUrl}markers/${city}`
-    );
+    const typesUrl = type.length && createTypesUrl(typeFilter, page, itemsPerPage)
+    const url = type.length ? `${apiUrl}markers/${city}?${typesUrl}` : `${apiUrl}markers/${city}`
+    console.log(url, type)
+    const response = await axios.get(url);
     const {
       status,
       data: { ok, data },
     } = response;
-    if (status === 200) {
-      console.log("getPropertiesIds", response);
+    if (status === 200 && ok) {
+      const orderedProperties = orderByPrice(data, order, false);
       dispatch({
-        type: "SET_PROPERTIES_IDS",
-        payload: response,
-      });
-      return ok ? data : [];
-    }
-  };
-
-
-
-
-  const getProperties = async (city: string = 'madrid', page: number = 0, limit: number = 30) => {
-    const ids = await getPropertiesIds(city);
-    const idsUrl = createIdsUrl(ids, page, limit);
-    if (ids.length) {
-      const response = await axios.get(
-        `${apiUrl}homecards_ids?${idsUrl}`
-      );
-      const {
-        status,
-        data: { ok, data },
-      } = response;
-      console.log("getProperties", response);
-      dispatch({
-        type: "SET_PROPERTIES",
-        payload: status === 200 && ok ? data.homecards : [],
+        type: 'SET_PROPERTIES_IDS',
+        payload: orderedProperties,
       });
     }
   };
 
-  useEffect(() => {
-    getProperties()
-  }, [])
+  const getProperties = async (
+    ids: IPropertiesId[],
+    page: number = 0,
+    limit: number = 30
+  ) => {
+    try {
+      dispatch({type: 'SET_IS_LOADING', payload: true})
+      console.log("lo que llega", ids[0])
+      const idsUrl = createIdsUrl(ids, page, limit);
+      if (propertiesIds.length) {
+        const response = await axios.get(`${apiUrl}homecards_ids?${idsUrl}`);
+        const {
+          status,
+          data: { ok, data },
+        } = response;
+        const orderedProperties = orderByPrice(data.homecards, priceOrder, true);
+        dispatch({
+          type: 'SET_PROPERTIES',
+          payload: status === 200 && ok ? [...orderedProperties] : [],
+        });
+      }
+    } catch (error) {
+      console.error(error)
+      dispatch({
+        type: 'SET_PROPERTIES',
+        payload: [],
+      });
+      throw error
+    } finally {
+      dispatch({type: 'SET_IS_LOADING', payload: false})
+    }
+  };
 
+  useEffect(() => {
+    getPropertiesIds(cityFilter, priceOrder, typeFilter);
+  }, [cityFilter, typeFilter]);
 
   useEffect(() => {
-    if(properties){
+    const orderedIds = orderByPrice(propertiesIds, priceOrder, false)
+    dispatch({
+      type: 'SET_PROPERTIES_IDS',
+      payload: [...orderedIds]
+    })
+  }, [priceOrder])
+
+  useEffect(() => {
+    if (propertiesIds.length) {
+      getProperties(propertiesIds, page, itemsPerPage);
+    }
+  }, [propertiesIds, page, itemsPerPage]);
+
+  useEffect(() => {
+    if (properties) {
       dispatch({
         ...propertiesState,
-        isLoadingProperties: false
-      })
+        isLoadingProperties: false,
+      });
     }
-  }, [properties])
-
-  useEffect(() => {
-    getPropertiesIds()
-  }, [priceOrder, typeFilter])
+  }, [properties]);
 
   const contextValue = {
     properties: propertiesState.properties ?? [],
     selectedProperty: propertiesState.selectedProperty ?? [],
     getPropertiesIds,
     getProperties,
-    setCity
+    setCityFilter,
+    setPriceOrder,
+    setTypeFilter,
+    setPage,
+    setItemsPerPage,
   };
 
   return (
