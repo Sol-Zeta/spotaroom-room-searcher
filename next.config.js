@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require('path')
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -6,6 +8,9 @@ const nextConfig = {
   },
   env: {
     API_BASE_URL: 'https://www.spotahome.com/api/public/listings/search/'
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
   },
 }
 
