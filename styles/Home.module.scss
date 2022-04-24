@@ -1,0 +1,19 @@
+@import './common/mixin.scss';
+
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  @include row_space_between;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 4rem 0;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
