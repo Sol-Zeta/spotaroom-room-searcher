@@ -21,8 +21,11 @@
 }
 .filter_container{
   @include large_margin_bottom;
-  display: 'flex'; 
-  background-color: 'red'
+  @include row_center;
+  align-items: center;
+}
+.cards_container{
+  width: 75%;
 }
 
 @media (max-width: 600px) {

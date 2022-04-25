@@ -4,83 +4,92 @@
 $primary-font: "Luckiest Guy", cursive;
 $secondary-font: "Open Sans", sans-serif;
 
-@mixin primary-typo {
+@mixin primary_typo {
   font-family: $primary-font;
   color: $black;
 }
 
-@mixin secondary-typo {
+@mixin secondary_typo {
   font-family: $secondary-font;
   color: $black;
 }
 
-@mixin secondary-typo-bold {
-  @include secondary-typo;
+@mixin secondary_typo_bold {
+  @include secondary_typo;
   font-weight: 600;
 }
 
-@mixin secondary-typo-thin {
-  @include secondary-typo;
+@mixin secondary_typo_light {
+  @include secondary_typo;
   font-weight: 300;
 }
 
 /*** PRIMARY ***/
 
-@mixin primary-H1 {
-  @include primary-typo;
+@mixin primary_H1 {
+  @include primary_typo;
   font-size: 4rem;
 }
-@mixin primary-H2 {
-  @include primary-typo;
+@mixin primary_H2 {
+  @include primary_typo;
   font-size: 3.5rem;
 }
-@mixin primary-H3 {
-  @include primary-typo;
+@mixin primary_H3 {
+  @include primary_typo;
 
   font-size: 3rem;
 }
-@mixin primary-H4 {
-  @include primary-typo;
+@mixin primary_H4 {
+  @include primary_typo;
   font-size: 2.5rem;
 }
-@mixin primary-H5 {
-  @include primary-typo;
+@mixin primary_H5 {
+  @include primary_typo;
   font-size: 1.5rem;
 }
-@mixin primary-H5-light {
-  @include primary-typo-thin;
+@mixin primary_H5_light {
+  @include primary_typo_light;
   font-size: 1.5rem;
+}
+@mixin primary_body {
+  @include primary_typo;
+  font-size: 1rem;
+}
+@mixin primary_body_light {
+  @include primary_typo;
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 /*** SECONDARY ***/
 
-@mixin secondary-H2 {
-  @include secondary-typo;
+@mixin secondary_H2 {
+  @include secondary_typo;
   font-size: 3.5rem;
 }
-@mixin secondary-H3 {
-  @include secondary-typo;
+@mixin secondary_H3 {
+  @include secondary_typo;
   font-size: 3rem;
 }
-@mixin secondary-H4 {
-  @include secondary-typo;
+@mixin secondary_H4 {
+  @include secondary_typo;
   font-size: 2.5rem;
 }
 
-@mixin secondary-H5 {
-  @include secondary-typo;
+@mixin secondary_H5 {
+  @include secondary_typo;
   font-size: 1.5rem;
 }
 
-@mixin secondary-body {
-  @include secondary-typo;
+@mixin secondary_body {
+  @include secondary_typo;
   font-size: 1rem;
 }
-@mixin secondary-body-bold {
-  @include secondary-body;
+@mixin secondary_body_bold {
+  @include secondary_body;
   font-weight: 600;
 }
-@mixin secondary-body-thin {
-  @include secondary-body;
+@mixin secondary_body_light {
+  @include secondary_body;
   font-weight: 300;
 }

@@ -21,8 +21,12 @@
   @include row;
   justify-content: center;
 }
+@mixin row_end {
+  @include row;
+  justify-content: flex-end;
+}
 
-@mixin column_align_center {
+@mixin column_center {
   @include column;
   align-items: center;
 }
