@@ -1,5 +1,16 @@
 @import '/styles/common/colors';
+@import '/styles/common/fonts';
 
 .container{
+    border: none;
     background-color: $primary_regular;
+    padding: 8px 16px;
+}
+
+.secondary_container{
+    background-color: $secondary_regular;
+}
+
+.text {
+   @include primary-body-light; 
 }
