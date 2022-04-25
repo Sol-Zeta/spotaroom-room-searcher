@@ -51,7 +51,7 @@ const Home: NextPage = () => {
       <Head />
       <main className={styles.main}>
         <section className={styles.filters_container}>
-          <TextInput value={cityFilter} onChange={setCity} />
+          <TextInput value={cityFilter} onChange={setCity} onEnterKey={handleSearchClick}/>
           <button onClick={handleSearchClick}>BUSCAR</button>
           <button onClick={() => setPriceOrder("des")}>MÁS CAROS</button>
           <button onClick={() => setPriceOrder("asc")}>MÁS BARATOS</button>

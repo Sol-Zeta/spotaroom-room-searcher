@@ -37,7 +37,7 @@ const PropertiesState = ({ children }: Props) => {
   } = propertiesState;
 
   const setCityFilter = (cityFilter: string) =>
-    dispatch({ type: 'SET_CITY', payload: cityFilter.toLocaleLowerCase() });
+    dispatch({ type: 'SET_CITY', payload: cityFilter ? cityFilter.toLocaleLowerCase() : 'madrid' });
   const setPriceOrder = (priceOrder: string) =>
     dispatch({ type: 'SET_PRICE_ORDER', payload: priceOrder });
   const setTypeFilter = (typeFilter: string[]) =>
@@ -48,7 +48,6 @@ const PropertiesState = ({ children }: Props) => {
     dispatch({ type: 'SET_ITEMS_PER_PAGE', payload: itemsPerPage });
 
   const getPropertiesIds = async (city: string = 'madrid', order: string, type: string) => {
-  
     const typesUrl = type.length && createTypesUrl(typeFilter, page, itemsPerPage)
     const url = type.length ? `${apiUrl}markers/${city}?${typesUrl}` : `${apiUrl}markers/${city}`
     console.log(url, type)
