@@ -1,17 +1,16 @@
-import React from 'react'
+import React from 'react';
+import styles from './Footer.module.scss';
 
 export const Footer = () => {
   return (
-    <footer className=''>
+    <footer className={styles.container}>
     <a
-      href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+      href="https://github.com/Sol-Zeta/spotaroom-room-searcher"
       target="_blank"
       rel="noopener noreferrer"
+      className={styles.text}
     >
-      Powered by{" "}
-      <span className=''>
-        
-      </span>
+      An Erasmusu &#174; Technical Test made by <span>Sol</span>
     </a>
   </footer>
   )

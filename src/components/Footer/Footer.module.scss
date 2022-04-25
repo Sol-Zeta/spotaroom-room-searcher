@@ -1,0 +1,24 @@
+@import '../../../styles/common/colors';
+@import '../../../styles/common/heights';
+@import '../../../styles/common/fonts';
+@import '../../../styles/common/mixin';
+
+.container{
+    @include row_center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: $footer_height;
+    background-color: $neutral_dark;
+}
+
+.text{
+    @include secondary_body;
+    color: $white;
+    & > span{
+        @include secondary_body_bold;
+        color: $secondary_light;
+        text-decoration: underline;
+    }
+}
