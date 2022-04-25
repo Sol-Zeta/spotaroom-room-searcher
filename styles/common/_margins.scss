@@ -1,0 +1,30 @@
+@mixin xlarge_margin_bottom {
+  margin-bottom: 44px;
+}
+@mixin large_margin_bottom {
+  margin-bottom: 36px;
+}
+@mixin medium_margin_bottom {
+  margin-bottom: 24px;
+}
+@mixin small_margin_bottom {
+  margin-bottom: 16px;
+}
+@mixin xsmall_margin_bottom {
+  margin-bottom: 8px;
+}
+@mixin xlarge_margin_top {
+  margin-top: 44px;
+}
+@mixin large_margin_top {
+  margin-top: 36px;
+}
+@mixin medium_margin_top {
+  margin-top: 24px;
+}
+@mixin small_margin_top {
+  margin-top: 16px;
+}
+@mixin xsmall_margin_top {
+  margin-top: 8px;
+}

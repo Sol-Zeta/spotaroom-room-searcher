@@ -1,0 +1,86 @@
+@import "./colors";
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Open+Sans:wght@300;400;600;800&display=swap");
+
+$primary-font: "Luckiest Guy", cursive;
+$secondary-font: "Open Sans", sans-serif;
+
+@mixin primary-typo {
+  font-family: $primary-font;
+  color: $black;
+}
+
+@mixin secondary-typo {
+  font-family: $secondary-font;
+  color: $black;
+}
+
+@mixin secondary-typo-bold {
+  @include secondary-typo;
+  font-weight: 600;
+}
+
+@mixin secondary-typo-thin {
+  @include secondary-typo;
+  font-weight: 300;
+}
+
+/*** PRIMARY ***/
+
+@mixin primary-H1 {
+  @include primary-typo;
+  font-size: 4rem;
+}
+@mixin primary-H2 {
+  @include primary-typo;
+  font-size: 3.5rem;
+}
+@mixin primary-H3 {
+  @include primary-typo;
+
+  font-size: 3rem;
+}
+@mixin primary-H4 {
+  @include primary-typo;
+  font-size: 2.5rem;
+}
+@mixin primary-H5 {
+  @include primary-typo;
+  font-size: 1.5rem;
+}
+@mixin primary-H5-light {
+  @include primary-typo-thin;
+  font-size: 1.5rem;
+}
+
+/*** SECONDARY ***/
+
+@mixin secondary-H2 {
+  @include secondary-typo;
+  font-size: 3.5rem;
+}
+@mixin secondary-H3 {
+  @include secondary-typo;
+  font-size: 3rem;
+}
+@mixin secondary-H4 {
+  @include secondary-typo;
+  font-size: 2.5rem;
+}
+
+@mixin secondary-H5 {
+  @include secondary-typo;
+  font-size: 1.5rem;
+}
+
+@mixin secondary-body {
+  @include secondary-typo;
+  font-size: 1rem;
+}
+@mixin secondary-body-bold {
+  @include secondary-body;
+  font-weight: 600;
+}
+@mixin secondary-body-thin {
+  @include secondary-body;
+  font-weight: 300;
+}
