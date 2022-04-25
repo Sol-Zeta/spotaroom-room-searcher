@@ -74,3 +74,7 @@ export interface IPropertiesDetail {
 }
 
 
+export interface ICityOptions {
+  label: string;
+}
+
