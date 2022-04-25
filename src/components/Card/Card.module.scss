@@ -7,26 +7,55 @@
 .container{
     @include row_space_between;
     @include large_margin_bottom;
-    align-items: center;
     background-color: $white;
     border-radius: 8px;
     box-shadow: $neutral_shadow;
-    padding: 10px 3%;
+    padding: 30px 3%;
     
 }
 .left_container{
     width: 20%;
 }
 .right_container{
+    @include column_space_between;
+    justify-content: space-between;
     width: 75%;
+    background-color: red;
 }
 .text_container{
-     &>p {
-         @include secondary_H5;
-     }
+    position: relative;
+}
+.title{
+    @include small_margin_bottom;
+    @include secondary_H6;
+    font-weight: 600;
+    width: 80%;
+}
+.price_container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $black;
+    padding: 10px 10px 5px;
+    border-radius: 8px;
+    & > p{
+       @include primary-body;
+       color: $yellow;
+       letter-spacing: 1px; 
+    }
+}
+
+.street_container {
+    @include row;
+    align-items: center;
+    & p {
+       margin-left: 12px; 
+    }
 }
 .buttons_container{
-    @include row_end;
+    align-self: flex-end;
+}
 
-    background-color: bisque;
+.first_button{
+    margin-right: 30px;
 }

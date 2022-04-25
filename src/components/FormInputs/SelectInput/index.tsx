@@ -34,9 +34,6 @@ export const SelectInput = ({value, label, options, onChange}: Props) => {
             {options.map((e: IOptions)=>(
                 <MenuItem key={`${e.label}-option`} value={e.id}>{e.label}</MenuItem>
             ))}
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
     </Box>

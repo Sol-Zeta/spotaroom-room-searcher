@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import styles from "./Card.module.scss";
 import { StandardButton } from "../Button";
+import { Icon } from "../Icon";
+import { icons } from "../../assetsRoutes";
 
 interface Props {
   title: string;
@@ -43,13 +45,18 @@ export const Card = ({
       </div>
       <div className={styles.right_container}>
         <div className={styles.text_container}>
-          <h2>{index + 1}</h2>
-          <p>{title}</p>
-          <p>{`${price} ${currency || "€"}`}</p>
-          <p>{street}</p>
+          {/* <h2>{index + 1}</h2> */}
+          <p className={styles.title}>{title}</p>
+          <div className={styles.price_container}>
+            <p>{`${price} ${currency || "€"}`}</p>
+          </div>
+          <div className={styles.street_container}>
+            <Icon icon={icons['location']}/>
+            <p>{street}</p>
+          </div>
         </div>
         <div className={styles.buttons_container}>
-          <StandardButton secondary text={primaryText} onClick={primaryClick} />
+          <StandardButton customStyles={styles.first_button} secondary text={primaryText} onClick={primaryClick} />
           <StandardButton text={secondaryText} onClick={secondaryClick} />
         </div>
       </div>
