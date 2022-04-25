@@ -1,0 +1,41 @@
+@import '../../../styles/common/colors';
+@import '../../../styles/common/fonts';
+@import '../../../styles/common/mixin';
+@import '../../../styles/common/heights';
+
+.main_container{
+  min-height: calc(100vh - $navbar_height - $footer_height);
+}
+
+.nav {
+    @include row_space_between;
+    position: relative;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: $navbar_height;
+    padding: 12px 40px;
+    box-sizing: border-box;
+    background-color: $white;
+    box-shadow: $neutral_shadow;
+  }
+
+  .nav_and_icon{
+    @include row_space_between;
+    height: $navbar_height;
+    width: 100%;
+  }
+
+  .icon_container{
+    @include column_center;
+    width: 15%;
+    box-sizing: border-box;
+  }
+  
+  .nav_links {
+    @include row_space_between;
+    width: 40%;
+    flex-wrap: wrap;
+    list-style: none;
+    text-transform: capitalize;
+  }
