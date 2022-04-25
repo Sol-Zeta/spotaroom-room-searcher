@@ -1,9 +1,12 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import type { NextPage } from "next";
+import useTranslation from 'next-translate/useTranslation';
 import Image from "next/image";
-import { Head, Footer, TextInput } from "../components";
 import { PropertiesContext } from "../context";
-import { createFileName, downloadFile } from "../utils";
+import { IconButton, Head, Footer, AutoCompleteInput, SelectInput } from "../components";
+import { createFileName, downloadFile, capitalizeWords } from "../utils";
+import { cityOptions } from "../data";
+
 import styles from "../../styles/Home.module.scss";
 
 const Home: NextPage = () => {
@@ -28,6 +31,8 @@ const Home: NextPage = () => {
   const [fileToDownload, setFileToDownload] = useState("");
   const [href, setHref] = useState("");
 
+  const { t } = useTranslation()
+
   let downloadLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -40,7 +45,11 @@ const Home: NextPage = () => {
     setPage(activePage);
   }, [activePage]);
 
+  const translateCities = (options: string[]) => options.map((e:string)=>({label: capitalizeWords(t(`cities:${e}`)), id: e}))
+  
   const handleSearchClick = () => setCityFilter(city);
+
+  const handleAutocompleteChange = (value: string) => value !== 'any_city' ? setCity(value) : setCity('');
 
   const handleDownloadFile = () =>
     downloadFile(JSON.stringify(properties), "text/JSON", downloadLinkRef);
@@ -51,10 +60,27 @@ const Home: NextPage = () => {
       <Head />
       <main className={styles.main}>
         <section className={styles.filters_container}>
-          <TextInput value={cityFilter} onChange={setCity} onEnterKey={handleSearchClick}/>
-          <button onClick={handleSearchClick}>BUSCAR</button>
-          <button onClick={() => setPriceOrder("des")}>MÁS CAROS</button>
-          <button onClick={() => setPriceOrder("asc")}>MÁS BARATOS</button>
+          <div className={styles.filter_container}>
+            <AutoCompleteInput 
+              label={t("common:city")}
+              value={cityFilter}
+              noOptionsText={'No hay resultados para mostrar'}
+              options={translateCities(cityOptions)}
+              onChange={handleAutocompleteChange}
+            />
+            <IconButton icon={'search'} onClick={handleSearchClick}/>
+          </div>
+          <div className={styles.filter_container}>
+            <SelectInput 
+              label={t("common:order")}
+              value={priceOrder}
+              options={[
+                {label: t("common:ascending_price"), id: 'asc'},
+                {label: t("common:descending_price"), id: 'des'}
+              ]}
+              onChange={setPriceOrder}
+            />
+          </div>
           <button onClick={() => setTypeFilter([...types, "rooms"])}>
             SOLO HABITACIONES
           </button>

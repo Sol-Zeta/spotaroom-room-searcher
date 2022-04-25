@@ -1,14 +1,28 @@
 @import './common/mixin.scss';
+@import './common/margins.scss';
+@import './common/colors.scss';
 
 .container {
-  padding: 0 2rem;
+
 }
 
 .main {
   @include row_space_between;
   align-items: flex-start;
   min-height: 100vh;
-  padding: 4rem 0;
+}
+
+.filters_container{
+  background-color: $neutral;
+  min-width: 400px;
+  width: 25%;
+  min-height: 100vh;
+  padding: 10px 3%;
+}
+.filter_container{
+  @include large_margin_bottom;
+  display: 'flex'; 
+  background-color: 'red'
 }
 
 @media (max-width: 600px) {
