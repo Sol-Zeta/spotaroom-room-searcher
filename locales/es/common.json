@@ -1,0 +1,10 @@
+{
+"city": "ciudad",
+"rooms": "habitaciones",
+"apartments": "apartamentos",
+"studios": "estudios",
+"residences": "residencias",
+"ascending_price": "Más baratos primero",
+"descending_price": "Más caros primero",
+"order": "ordenar"
+}
