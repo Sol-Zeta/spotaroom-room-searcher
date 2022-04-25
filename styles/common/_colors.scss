@@ -1,6 +1,6 @@
 /*** PRIMARY ***/
 $primary_regular: #008f2a;
-$primary_dark: #006917;
+$primary_dark: rgb(0, 105, 23);
 $primary_light: #38bb5f;
 $primary_regular20: rgba(0, 143, 42, 0.2);
 $primary_regular40: rgba(0, 143, 42, 0.4);
@@ -8,7 +8,7 @@ $primary_regular5: rgba(0, 143, 42, 0.05);
 
 /*** SECONDARY ***/
 $secondary_regular: #ff9420;
-$secondary_dark: #bd6513;
+$secondary_dark: rgb(189, 101, 19);
 $secondary_light: #fcab53;
 
 /*** SEMANTIC ***/
@@ -53,14 +53,9 @@ $gradient_primary: linear-gradient(180deg, #17020C 26.92%, #490828 100%);
 $gradient_secondary: linear-gradient(180deg, #021417 17.19%, #041F24 100%);
 
 /*** BOX-SHADOWS ***/
-$neutral_shadow: 0px 03px 10px 3px rgba(165, 165, 165, 0.8);
-$snackbar_shadow: 2px 4px 8px rgba(163, 18, 88, 0.25);
-$drop_primary_shadow: 0px 0px 16px #E72986;
-$drop_button_shadow: -2px 2px 6px #93104F;
-$notication_center_shadow: -1px 1px 8px #E72986;
-$drop_active_button_shadow: inset 0px 16px 12px rgba(73, 8, 40, 0.6);
-$drop_secondary_shadow: 0px 0px 16px #29CBE7;
-$drop_error_shadow: -1px 1px 10px $semantic_err_light;
+$neutral_shadow: 0px 3px 10px 3px rgba(165, 165, 165, 0.8);
+$primary_shadow: 0px 7px 0px 0px rgba(0, 105, 23, 0.8);
+$secondary_shadow: 0px 7px 0px 0px rgba(189, 101, 19, 0.8);
 
 
 /*** BLUR ***/

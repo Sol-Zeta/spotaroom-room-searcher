@@ -81,6 +81,11 @@ $secondary-font: "Open Sans", sans-serif;
   font-size: 1.5rem;
 }
 
+@mixin secondary_H6 {
+  @include secondary_typo;
+  font-size: 1.25rem;
+}
+
 @mixin secondary_body {
   @include secondary_typo;
   font-size: 1rem;
