@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import type { NextPage } from "next";
 import useTranslation from 'next-translate/useTranslation';
-import Image from "next/image";
 import { PropertiesContext } from "../context";
-import { IconButton, Head, Footer, AutoCompleteInput, SelectInput } from "../components";
+import { IconButton, Head, Footer, AutoCompleteInput, SelectInput, CardList } from "../components";
 import { createFileName, downloadFile, capitalizeWords } from "../utils";
 import { cityOptions } from "../data";
 
@@ -99,27 +98,7 @@ const Home: NextPage = () => {
           </button>
         </section>
         <section className={styles.cards_container}>
-          <article>
-            {propertiesList.map((e: any, i: number) => (
-              <div key={i}>
-                <h2>{i + 1}</h2>
-                <p>{e.title}</p>
-                <p>{`${e.pricePerMonth} ${e.currencySymbol || "€"}`}</p>
-                <p>{e.location.street}</p>
-                <p>{e.location.postalCode}</p>
-                <p>{e.price}</p>
-                {e.photos.map((img: any, i: number) => (
-                  <Image
-                    key={i}
-                    src={img.src}
-                    alt={e.title}
-                    width={"100%"}
-                    height={"100%"}
-                  />
-                ))}
-              </div>
-            ))}
-          </article>
+          <CardList list={properties}/>
           <article className={styles.pagination_container}>
             {/* pagination */}
           </article>
