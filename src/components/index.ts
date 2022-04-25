@@ -1,5 +1,16 @@
-import { Head } from './Head';
-import { Footer }from './Footer';
-import { TextInput }from './FormInputs';
+import { IconButton, StandardButton } from "./Button";
+import { Head } from "./Head";
+import { Icon } from "./Icon";
+import { Footer } from "./Footer";
+import { AutoCompleteInput, TextInput, SelectInput } from "./FormInputs";
 
-export { Head, Footer, TextInput}
+export {
+  Icon,
+  Head,
+  Footer,
+  AutoCompleteInput,
+  TextInput,
+  IconButton,
+  SelectInput,
+  StandardButton,
+};
