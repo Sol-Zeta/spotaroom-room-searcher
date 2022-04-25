@@ -1,0 +1,32 @@
+@import '/styles/common/colors';
+@import '/styles/common/mixin';
+@import '/styles/common/margins';
+@import '/styles/common/fonts';
+
+
+.container{
+    @include row_space_between;
+    @include large_margin_bottom;
+    align-items: center;
+    background-color: $white;
+    border-radius: 8px;
+    box-shadow: $neutral_shadow;
+    padding: 10px 3%;
+    
+}
+.left_container{
+    width: 20%;
+}
+.right_container{
+    width: 75%;
+}
+.text_container{
+     &>p {
+         @include secondary_H5;
+     }
+}
+.buttons_container{
+    @include row_end;
+
+    background-color: bisque;
+}

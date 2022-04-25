@@ -1,0 +1,10 @@
+@import '/styles/common/colors';
+@import '/styles/common/heights';
+
+.cards_container{
+    width: 100%;
+    background-color: $neutral_light;
+    padding: 100px 3%;
+    height: calc(100vh - $footer_height - $navbar_height);
+    overflow-y: scroll;
+}
