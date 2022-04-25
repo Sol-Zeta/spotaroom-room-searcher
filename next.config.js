@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const nextTranslate = require("next-translate");
 const path = require('path')
 
 const nextConfig = {
@@ -10,8 +11,9 @@ const nextConfig = {
     API_BASE_URL: 'https://www.spotahome.com/api/public/listings/search/'
   },
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, '.'), path.join(__dirname, 'styles')],
   },
+  ...nextTranslate()
 }
 
 module.exports = nextConfig
