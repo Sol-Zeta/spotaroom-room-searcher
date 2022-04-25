@@ -1,5 +1,5 @@
-import { faArrowAltCircleUp, faArrowAltCircleDown, faArrowAltCircleLeft, faArrowAltCircleRight, faWindowClose, faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as faHeartSolid, faMagnifyingGlass}  from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleUp, faArrowAltCircleDown, faArrowAltCircleLeft, faArrowAltCircleRight, faWindowClose, faHeart, faMap } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faHeartSolid, faMagnifyingGlass, faMapMarker, faMarker}  from '@fortawesome/free-solid-svg-icons';
 
 export const icons = {
     arrow_up: faArrowAltCircleUp,
@@ -9,5 +9,6 @@ export const icons = {
     cross: faWindowClose,
     heart_line: faHeart,
     heart_solid: faHeartSolid,
-    search: faMagnifyingGlass
+    location: faMap,
+    search: faMagnifyingGlass,
 }
