@@ -1,0 +1,10 @@
+@import '/styles/common/colors';
+
+
+.container{
+    width: 50px;
+    height: 100%;
+    background-color: $neutral_light;
+    border: none;
+    border-radius: 8%;
+}
