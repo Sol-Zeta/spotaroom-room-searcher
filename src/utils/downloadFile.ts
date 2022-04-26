@@ -8,8 +8,3 @@ export const downloadFile = (content: string, fileName: string, contentType: str
       ref.current.click();
     }
 };
-// export const downloadFile = (ref: RefObject<HTMLAnchorElement>) => {
-//   if (ref.current) {
-//     ref.current.click();
-//   }
-// };
