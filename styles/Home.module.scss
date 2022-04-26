@@ -21,8 +21,7 @@
 }
 .filter_container{
   @include large_margin_bottom;
-  @include row_center;
-  align-items: center;
+  @include row_space_between;
 }
 .cards_container{
   background-color: $neutral_light;
