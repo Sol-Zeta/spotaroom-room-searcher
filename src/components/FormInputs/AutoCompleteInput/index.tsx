@@ -19,15 +19,9 @@ interface Props {
 
 export const AutoCompleteInput = ({defaultValue, width = 300, label, options, noOptionsText, onChange}: Props) => {
 
-  const [inputValue, setInputValue] = useState(defaultValue)
-
   const handleChange = (value: IOptions) => {
     if(value !== null){
-      setInputValue(value)
       onChange(value.id)
-    } else {
-      setInputValue(options[0])
-      onChange('any_city')
     }
   }
   
@@ -35,12 +29,12 @@ export const AutoCompleteInput = ({defaultValue, width = 300, label, options, no
   return (
     <Autocomplete
       isOptionEqualToValue={()=> true}
-      value={inputValue}
+      value={defaultValue}
       noOptionsText={noOptionsText}
       disablePortal
       getOptionLabel={(option: IOptions) => capitalizeWords(option.label)}
       onChange={(_, value: any) => handleChange(value)}
-      id="combo-box-demo"
+      id="city"
       options={options}
       sx={{ width }}
       renderInput={(params) => <TextField {...params} label={capitalizeFirstLetter(label)} />}

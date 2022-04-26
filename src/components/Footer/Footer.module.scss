@@ -7,8 +7,9 @@
     @include row_center;
     align-items: center;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    z-index: 10;
     height: $footer_height;
     background-color: $neutral_dark;
 }

@@ -6,10 +6,15 @@ import styles from './Icon.module.scss';
 interface Props {
   icon: IconProp;
   light?: boolean;
+  big?: boolean;
 }
 
-export const Icon = ({ icon, light }: Props) => (
+export const Icon = ({ icon, light, big = false }: Props) => (
   <div className={styles.container}>
-    <FontAwesomeIcon icon={icon} color={light ? '#E6E4E5' : '#131213'}/>
+    <FontAwesomeIcon 
+      icon={icon} 
+      color={light ? '#E6E4E5' : '#131213'}
+      size={big ? "2x" : "1x"}
+    />
   </div>
 );

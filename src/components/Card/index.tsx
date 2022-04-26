@@ -40,7 +40,7 @@ export const Card = ({
           width={"100%"}
           height={"100%"}
           layout="responsive"
-          objectFit="contain"
+          objectFit="cover"
         />
       </div>
       <div className={styles.right_container}>

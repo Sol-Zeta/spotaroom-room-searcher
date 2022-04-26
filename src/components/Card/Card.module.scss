@@ -2,6 +2,7 @@
 @import '/styles/common/mixin';
 @import '/styles/common/margins';
 @import '/styles/common/fonts';
+@import '/styles/common/breakpoints';
 
 
 .container{
@@ -10,8 +11,8 @@
     background-color: $white;
     border-radius: 8px;
     box-shadow: $neutral_shadow;
-    padding: 30px 3%;
-    
+    padding: 30px 3%;  
+    overflow: hidden;
 }
 .left_container{
     width: 20%;
@@ -59,3 +60,26 @@
     margin-right: 30px;
 }
 
+@media (max-width: $breakpoint-tablet) {
+    .container{
+        @include column_center;
+        padding: 0;
+    }
+    .left_container, .right_container{
+        width: 100%;
+    }
+    .left_container{
+        @include medium_margin_bottom;
+    }
+    .right_container{
+        padding: 30px;
+    }
+    .buttons_container{
+        @include column_end;
+    }
+    .first_button{
+        margin: 0;
+        @include large_margin_top;
+        @include medium_margin_bottom;
+    }
+  }

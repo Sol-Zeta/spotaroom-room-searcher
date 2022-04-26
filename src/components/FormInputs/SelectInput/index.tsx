@@ -14,14 +14,15 @@ interface IOptions {
 interface Props {
     value: string;
     label: string;
+    width?: number | string;
     options: IOptions[];
     onChange: (value: string) => void;
 }
 
-export const SelectInput = ({value, label, options, onChange}: Props) => {
+export const SelectInput = ({value, label, width = 120, options, onChange}: Props) => {
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ width }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">{capitalizeWords(label)}</InputLabel>
         <Select
