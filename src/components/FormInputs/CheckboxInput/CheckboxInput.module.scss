@@ -2,6 +2,7 @@
 @import '../../../../styles/common/fonts';
 @import '../../../../styles/common/margins';
 @import '../../../../styles/common/mixin';
+@import '../../../../styles/common/breakpoints';
 
 .container{
     width: 100%;
@@ -17,9 +18,22 @@
 }
 .option_container{
     @include row;
+    width: 100%;
     align-items: center;
     & > p {
         @include secondary_body;
         text-transform: capitalize;
+        margin-left: 16px;
     }
 }
+
+@media (max-width: $breakpoint-tablet) {
+    .options_container{
+        @include row_center;
+        flex-wrap: wrap;
+    }
+    .option_container{
+        max-width: 300px;
+        margin-right: 16px;
+    }
+  }

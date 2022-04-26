@@ -38,7 +38,6 @@ export const CheckboxInput = ({
       const props = { inputProps: { "aria-label": e.label, value: e.id } };
       return (
         <div key={i} className={styles.option_container}>
-          <p>{e.label}</p>
           <Checkbox
             sx={{
                 color: '#006917',
@@ -51,6 +50,7 @@ export const CheckboxInput = ({
             defaultChecked={selected.includes(e.id)}
             onChange={(e) => onValuesChange(e.target.value, e.target.checked)}
           />
+          <p>{e.label}</p>
         </div>
       );
     });
