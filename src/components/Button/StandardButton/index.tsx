@@ -6,9 +6,10 @@ interface Props {
   customStyles?: any;
   secondary?: boolean;
   onClick: () => void;
+  children?: JSX.Element | JSX.Element[];
 }
 
-export const StandardButton = ({ text, customStyles, onClick, secondary }: Props) => {
+export const StandardButton = ({ text, customStyles, onClick, secondary, children }: Props) => {
   
   const [isClicked, setIsClicked] = useState(false)
   
@@ -27,6 +28,7 @@ export const StandardButton = ({ text, customStyles, onClick, secondary }: Props
       <p className={`${styles.text} ${secondary && styles.secondary_text}`}>
         {text}
       </p>
+      {children}
     </button>
   );
 };

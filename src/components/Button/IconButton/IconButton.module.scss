@@ -3,8 +3,14 @@
 
 .container{
     width: 50px;
-    height: 100%;
-    background-color: $neutral_light;
+    background-color: $secondary_regular;
     border: none;
     border-radius: 8%;
+    box-sizing: border-box;
+    &:focus{
+        border: none;
+    }
+    &:hover{
+        background-color: $secondary_light;
+    }
 }
