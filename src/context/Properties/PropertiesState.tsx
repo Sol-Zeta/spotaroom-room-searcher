@@ -17,7 +17,7 @@ const initialState = {
   priceOrder: 'asc',
   typeFilter: [],
   cityFilter: 'madrid',
-  page: 1,
+  page: 0,
   itemsPerPage: 30,
   totalProperties: 0
 };
@@ -41,6 +41,8 @@ const PropertiesState = ({ children }: Props) => {
     totalProperties,
   } = propertiesState;
 
+  console.log("ciudad elegida", cityFilter)
+
   const setCityFilter = (cityFilter: string) =>
     dispatch({ type: 'SET_CITY', payload: cityFilter ? cityFilter.toLocaleLowerCase() : 'madrid' });
   const setPriceOrder = (priceOrder: string) =>
@@ -48,14 +50,13 @@ const PropertiesState = ({ children }: Props) => {
   const setTypeFilter = (typeFilter: string[]) =>
     dispatch({ type: 'SET_TYPE_FILTER', payload: [...typeFilter] });
   const setPage = (page: number) =>
-    dispatch({ type: 'SET_PAGE', payload: page });
+    dispatch({ type: 'SET_PAGE', payload: page-1 });
   const setItemsPerPage = (itemsPerPage: number) =>
     dispatch({ type: 'SET_ITEMS_PER_PAGE', payload: itemsPerPage });
 
   const getPropertiesIds = async (city: string = 'madrid', order: string, type: string) => {
     const typesUrl = type.length && createTypesUrl(typeFilter, page, itemsPerPage)
     const url = type.length ? `${apiUrl}markers/${city}?${typesUrl}` : `${apiUrl}markers/${city}`
-    console.log(url, type)
     const response = await axios.get(url);
     const {
       status,
@@ -77,7 +78,6 @@ const PropertiesState = ({ children }: Props) => {
   ) => {
     try {
       dispatch({type: 'SET_IS_LOADING', payload: true})
-      console.log("lo que llega", ids[0])
       const idsUrl = createIdsUrl(ids, page, limit);
       if (propertiesIds.length) {
         const response = await axios.get(`${apiUrl}homecards_ids?${idsUrl}`);
@@ -137,17 +137,17 @@ const PropertiesState = ({ children }: Props) => {
 
   const contextValue = {
     isContextReady,
-    properties: propertiesState.properties ?? [],
     totalProperties,
     page,
-    cityFilter,
-    priceOrder,
     itemsPerPage,
     selectedProperty: propertiesState.selectedProperty ?? [],
-    getPropertiesIds,
+    properties: propertiesState.properties ?? [],
     getProperties,
+    cityFilter,
     setCityFilter,
+    priceOrder,
     setPriceOrder,
+    typeFilter,
     setTypeFilter,
     setPage,
     setItemsPerPage,

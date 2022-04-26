@@ -6,7 +6,6 @@ interface IAction {
 
 const reducer = (state: any, action: IAction) => {
   const { payload, type }: { payload: any; type: string } = action;
-  console.log("pay", type, payload)
   const typeOptions: any = {
     SET_IS_LOADING: { ...state, isLoadingProperties: payload },
     SET_PROPERTIES: { ...state, properties: payload },

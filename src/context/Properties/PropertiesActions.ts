@@ -15,3 +15,5 @@ const reducer = (state: any, action: IAction) => {
 };
 
 export default reducer;
+
+//TODO: REVIEW FILE
