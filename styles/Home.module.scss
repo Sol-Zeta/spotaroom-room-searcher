@@ -1,6 +1,8 @@
 @import './common/mixin.scss';
 @import './common/margins.scss';
 @import './common/colors.scss';
+@import './common/heights.scss';
+@import './common/breakpoints.scss';
 
 .container {
 
@@ -9,33 +11,63 @@
 .main {
   @include row_space_between;
   align-items: flex-start;
-  min-height: 100vh;
+  max-height: calc(100vh - $footer_height - $navbar_height);
 }
 
 .filters_container{
+  @include column_space_between;
   background-color: $neutral;
   min-width: 400px;
   width: 25%;
-  min-height: 100vh;
-  padding: 10px 3%;
+  max-height: calc(100vh - $footer_height - $navbar_height);
+  padding: $navbar_height 3%;
 }
-.filter_container{
-  @include large_margin_bottom;
+.filter_container {
   @include row_space_between;
+  @include large_margin_bottom;
+}
+.checkbox_container, .button_container{
+  @include column_center;
+}
+.button_container{
+  @include large_margin_top;
 }
 .cards_container{
+  position: relative;
   background-color: $neutral_light;
   width: 75%;
+  overflow-y: hidden;
+  height: calc(100vh - $footer_height - $navbar_height);
 }
 .pagination_container{
   @include column_center;
-  @include large_margin_top;
-  @include large_margin_bottom;
+  justify-content: center;
+  height: $navbar_height;
+  width: 100%;
+  background-color: $neutral;
+  position: absolute;
+  z-index: 1;
 }
 
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+}
+
+
+@media (max-width: $breakpoint-tablet) {
+  .main{
+    @include column_space_between;
+    min-height: 0;
+    overflow-y: scroll;
+  }
+  .filters_container{
+    width: 100%;
+    max-height: inherit;
+  }
+  .cards_container{
+    width: 100%;
   }
 }

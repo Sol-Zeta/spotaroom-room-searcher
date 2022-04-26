@@ -28,3 +28,33 @@
 @mixin xsmall_margin_top {
   margin-top: 8px;
 }
+@mixin xlarge_padding_bottom {
+  padding-bottom: 44px;
+}
+@mixin large_padding_bottom {
+  padding-bottom: 36px;
+}
+@mixin medium_padding_bottom {
+  padding-bottom: 24px;
+}
+@mixin small_padding_bottom {
+  padding-bottom: 16px;
+}
+@mixin xsmall_padding_bottom {
+  padding-bottom: 8px;
+}
+@mixin xlarge_padding_top {
+  padding-top: 44px;
+}
+@mixin large_padding_top {
+  padding-top: 36px;
+}
+@mixin medium_padding_top {
+  padding-top: 24px;
+}
+@mixin small_padding_top {
+  padding-top: 16px;
+}
+@mixin xsmall_padding_top {
+  padding-top: 8px;
+}
