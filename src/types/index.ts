@@ -78,3 +78,8 @@ export interface ICityOptions {
   label: string;
 }
 
+export interface IRoutesOptions {
+  title: string;
+  url: string;
+}
+
