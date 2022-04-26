@@ -25,7 +25,13 @@
   align-items: center;
 }
 .cards_container{
+  background-color: $neutral_light;
   width: 75%;
+}
+.pagination_container{
+  @include column_center;
+  @include large_margin_top;
+  @include large_margin_bottom;
 }
 
 @media (max-width: 600px) {

@@ -5,6 +5,7 @@ import { Head } from "./Head";
 import { Icon } from "./Icon";
 import { Footer } from "./Footer";
 import { AutoCompleteInput, TextInput, SelectInput } from "./FormInputs";
+import { PaginationComponent as Pagination } from "./Pagination";
 
 export {
   Card,
@@ -15,6 +16,7 @@ export {
   AutoCompleteInput,
   TextInput,
   IconButton,
+  Pagination,
   SelectInput,
   StandardButton,
 };

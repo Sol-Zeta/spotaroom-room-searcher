@@ -4,7 +4,7 @@
 .cards_container{
     width: 100%;
     background-color: $neutral_light;
-    padding: 100px 3%;
+    padding: 1px 3% 100px;
     height: calc(100vh - $footer_height - $navbar_height);
     overflow-y: scroll;
 }

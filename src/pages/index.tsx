@@ -1,8 +1,16 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import type { NextPage } from "next";
-import useTranslation from 'next-translate/useTranslation';
+import useTranslation from "next-translate/useTranslation";
 import { PropertiesContext } from "../context";
-import { IconButton, Head, Footer, AutoCompleteInput, SelectInput, CardList } from "../components";
+import {
+  IconButton,
+  Head,
+  Footer,
+  AutoCompleteInput,
+  SelectInput,
+  CardList,
+  Pagination,
+} from "../components";
 import { createFileName, downloadFile, capitalizeWords } from "../utils";
 import { cityOptions } from "../data";
 
@@ -10,8 +18,10 @@ import styles from "../../styles/Home.module.scss";
 
 const Home: NextPage = () => {
   const {
+    isContextReady,
     isLoadingProperties,
     properties,
+    totalProperties,
     priceOrder,
     setPriceOrder,
     cityFilter,
@@ -25,12 +35,12 @@ const Home: NextPage = () => {
   } = useContext(PropertiesContext);
   const [propertiesList, setPropertiesList] = useState<any>([]);
   const [city, setCity] = useState(cityFilter);
-  const [activePage, setActivePage] = useState(page);
+  const [activePage, setActivePage] = useState(1);
   const [types, setTypes] = useState([]);
   const [fileToDownload, setFileToDownload] = useState("");
   const [href, setHref] = useState("");
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   let downloadLinkRef = useRef<HTMLAnchorElement>(null);
 
@@ -44,15 +54,27 @@ const Home: NextPage = () => {
     setPage(activePage);
   }, [activePage]);
 
-  const translateCities = (options: string[]) => options.map((e:string)=>({label: capitalizeWords(t(`cities:${e}`)), id: e}))
-  
+  useEffect(() => {
+    console.log("CONTEXT READY", isContextReady);
+  }, [isContextReady]);
+
+  const translateCities = (options: string[]) =>
+    options.map((e: string) => ({
+      label: capitalizeWords(t(`cities:${e}`)),
+      id: e,
+    }));
+
   const handleSearchClick = () => setCityFilter(city);
 
-  const handleAutocompleteChange = (value: string) => value !== 'any_city' ? setCity(value) : setCity('');
+  const handleAutocompleteChange = (value: string) =>
+    value !== "any_city" ? setCity(value) : setCity("");
 
   const handleDownloadFile = () =>
     downloadFile(JSON.stringify(properties), "text/JSON", downloadLinkRef);
 
+  if (isContextReady !== true) {
+    return <p>CARGANDO</p>;
+  }
 
   return (
     <div className={styles.container}>
@@ -60,22 +82,22 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <section className={styles.filters_container}>
           <div className={styles.filter_container}>
-            <AutoCompleteInput 
+            <AutoCompleteInput
               label={t("common:city")}
               value={cityFilter}
-              noOptionsText={'No hay resultados para mostrar'}
+              noOptionsText={"No hay resultados para mostrar"}
               options={translateCities(cityOptions)}
               onChange={handleAutocompleteChange}
             />
-            <IconButton icon={'search'} onClick={handleSearchClick}/>
+            <IconButton icon={"search"} onClick={handleSearchClick} />
           </div>
           <div className={styles.filter_container}>
-            <SelectInput 
+            <SelectInput
               label={t("common:order")}
               value={priceOrder}
               options={[
-                {label: t("common:ascending_price"), id: 'asc'},
-                {label: t("common:descending_price"), id: 'des'}
+                { label: t("common:ascending_price"), id: "asc" },
+                { label: t("common:descending_price"), id: "des" },
               ]}
               onChange={setPriceOrder}
             />
@@ -98,10 +120,14 @@ const Home: NextPage = () => {
           </button>
         </section>
         <section className={styles.cards_container}>
-          <CardList list={properties}/>
           <article className={styles.pagination_container}>
-            {/* pagination */}
+            <Pagination
+              totalPages={Math.floor(totalProperties/itemsPerPage)}
+              activePage={page}
+              onChange={setPage}
+            />
           </article>
+          <CardList list={properties} />
         </section>
       </main>
 
