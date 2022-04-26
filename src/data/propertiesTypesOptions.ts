@@ -1,2 +1,2 @@
-export const cityOptions = ['rooms', 'apartments', 'studios', 'residences'];
+export const propertiesTypesOptions = ['rooms', 'apartments', 'studios', 'residences'];
   
