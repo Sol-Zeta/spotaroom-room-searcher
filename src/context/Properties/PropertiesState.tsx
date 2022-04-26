@@ -41,10 +41,10 @@ const PropertiesState = ({ children }: Props) => {
     totalProperties,
   } = propertiesState;
 
-  console.log("ciudad elegida", cityFilter)
-
-  const setCityFilter = (cityFilter: string) =>
+  const setCityFilter = (cityFilter: string) =>{
+    console.log("ciudad que llega al setter", cityFilter)
     dispatch({ type: 'SET_CITY', payload: cityFilter ? cityFilter.toLocaleLowerCase() : 'madrid' });
+  }
   const setPriceOrder = (priceOrder: string) =>
     dispatch({ type: 'SET_PRICE_ORDER', payload: priceOrder });
   const setTypeFilter = (typeFilter: string[]) =>
