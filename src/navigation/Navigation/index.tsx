@@ -2,10 +2,10 @@ import { useState } from "react";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from 'next/router'
-import {Footer} from "../../components";
+import {Footer, Icon, TabletMenu} from "../../components";
 import { navigationRoutes } from '../NavigationRoutes';
-import { images } from "../../assetsRoutes";
+import { images, icons } from "../../assetsRoutes";
+import { IRoutesOptions } from '../../types';
 import styles from "./Navigation.module.scss";
 
 interface Props {
@@ -16,17 +16,14 @@ interface Props {
 const Navigation = ({children}: Props): JSX.Element => {
   const [currentLink, setCurrentLink] = useState(0)
 
-  let { t } = useTranslation();
-
-  const router = useRouter()
+  const { t } = useTranslation();
 
   const renderRoutes = () => {
-      return navigationRoutes.map((e:any, i:number) =>{
+      return navigationRoutes.map((e:IRoutesOptions, i:number) =>{
         return (
           <li key={i} className={styles.list_item}>
             <Link href={e.url}>
-              <a 
-                target={e.target ? '_blank' : ''}
+              <a
                 className={`${styles.link} ${currentLink === i+1 && styles.link_current}`}>
                   {t(`common:${e.title}`)}
               </a>
@@ -52,6 +49,9 @@ const Navigation = ({children}: Props): JSX.Element => {
               <ul className={styles.nav_links}>
                 {renderRoutes()}
               </ul>
+              <div className={styles.nav_tablet}>
+                <TabletMenu routes={navigationRoutes}/>
+              </div>
           </div>
         </nav>
             {children}

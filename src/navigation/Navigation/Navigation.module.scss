@@ -2,8 +2,10 @@
 @import '../../../styles/common/fonts';
 @import '../../../styles/common/mixin';
 @import '../../../styles/common/heights';
+@import '../../../styles/common/breakpoints';
 
 .main_container{
+  width: 100vw;
   min-height: calc(100vh - $navbar_height - $footer_height);
 }
 
@@ -38,4 +40,17 @@
     flex-wrap: wrap;
     list-style: none;
     text-transform: capitalize;
+  }
+
+  .nav_tablet{
+    display: none;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    .nav_tablet{
+      display: block;
+    }
+    .nav_links{
+      display: none;
+    }
   }
