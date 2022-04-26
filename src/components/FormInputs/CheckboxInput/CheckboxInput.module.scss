@@ -1,0 +1,25 @@
+@import '../../../../styles/common/colors';
+@import '../../../../styles/common/fonts';
+@import '../../../../styles/common/margins';
+@import '../../../../styles/common/mixin';
+
+.container{
+    width: 100%;
+}
+
+.title{
+    @include secondary_H6;
+    @include small_margin_bottom;
+    text-transform: capitalize
+}
+.options_container{
+    margin-left: 40px;
+}
+.option_container{
+    @include row;
+    align-items: center;
+    & > p {
+        @include secondary_body;
+        text-transform: capitalize;
+    }
+}
