@@ -9,6 +9,7 @@ interface Props {
   children: JSX.Element | JSX.Element[];
 }
 const initialState = {
+  isContextReady: true,
   isLoadingProperties: false,
   propertiesIds: [],
   properties: [],
@@ -16,8 +17,9 @@ const initialState = {
   priceOrder: 'asc',
   typeFilter: [],
   cityFilter: 'madrid',
-  page: 0,
+  page: 1,
   itemsPerPage: 30,
+  totalProperties: 0
 };
 
 const PropertiesState = ({ children }: Props) => {
@@ -27,6 +29,8 @@ const PropertiesState = ({ children }: Props) => {
   );
 
   const {
+    isLoadingProperties,
+    isContextReady,
     propertiesIds,
     properties,
     priceOrder,
@@ -34,6 +38,7 @@ const PropertiesState = ({ children }: Props) => {
     cityFilter,
     page,
     itemsPerPage,
+    totalProperties,
   } = propertiesState;
 
   const setCityFilter = (cityFilter: string) =>
@@ -99,6 +104,11 @@ const PropertiesState = ({ children }: Props) => {
   };
 
   useEffect(() => {
+    console.log('***************', page)
+  }, [page])
+  
+
+  useEffect(() => {
     getPropertiesIds(cityFilter, priceOrder, typeFilter);
   }, [cityFilter, typeFilter]);
 
@@ -126,7 +136,13 @@ const PropertiesState = ({ children }: Props) => {
   }, [properties]);
 
   const contextValue = {
+    isContextReady,
     properties: propertiesState.properties ?? [],
+    totalProperties,
+    page,
+    cityFilter,
+    priceOrder,
+    itemsPerPage,
     selectedProperty: propertiesState.selectedProperty ?? [],
     getPropertiesIds,
     getProperties,
