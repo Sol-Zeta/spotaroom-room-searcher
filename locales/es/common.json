@@ -1,5 +1,6 @@
 {
 "city": "ciudad",
+"choose_a_city": "elige una ciudad",
 "rooms": "habitaciones",
 "apartments": "apartamentos",
 "studios": "estudios",
@@ -7,9 +8,13 @@
 "ascending_price": "Más baratos primero",
 "descending_price": "Más caros primero",
 "order": "ordenar",
+"filter": "filtrar",
+"download_list": "descargar listado",
 "more_details": "más información",
 "book_now": "reservar ahora",
 "the_company": "nosotros",
 "how_we_work": "cómo trabajamos",
 "contact_us": "contacto"
 }
+
+
