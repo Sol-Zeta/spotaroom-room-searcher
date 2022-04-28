@@ -41,16 +41,12 @@ const Home: NextPage = () => {
   let downloadLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    console.log("ROUTER ************", router.query);
     if (router.query.city) {
       setCity(router.query.city);
       setCityFilter(router.query.city);
     }
   }, []);
 
-  useEffect(() => {
-    console.log("CITY FILTER", cityFilter);
-  }, [cityFilter]);
 
   const translateCities = (options: string[]) =>
     options.map((e: string) => ({

@@ -17,6 +17,11 @@
 .left_container{
     width: 20%;
 }
+.image{
+    &:hover{
+        opacity: 0.5;
+    }
+}
 .right_container{
     @include column_space_between;
     justify-content: space-between;

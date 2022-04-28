@@ -9,10 +9,10 @@ interface Props {
     list: IPropertiesDetail [] | [];
 } 
 
-
 export const CardList = ({list}: Props) => {
-console.log(list[0])
-const { t } = useTranstaltion()
+
+    const { t } = useTranstaltion()
+
 const renderCards = () => list.map((e:IPropertiesDetail, i:number)=>(
     <Card 
         key={i}
