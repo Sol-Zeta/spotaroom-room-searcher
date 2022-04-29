@@ -11,8 +11,16 @@ interface Props {
 
 export const IconButton = ({ icon, light, onClick }: Props) => {
   return (
-    <button onClick={onClick} className={styles.container}>
-      <Icon icon={icons[icon]} light={light}/>
+    <button 
+      data-testid='icon-button'
+      onClick={onClick} 
+      className={styles.container}
+    >
+      <Icon 
+        data-testid='icon'
+        icon={icons[icon]} 
+        light={light}
+      />
     </button>
   );
 };

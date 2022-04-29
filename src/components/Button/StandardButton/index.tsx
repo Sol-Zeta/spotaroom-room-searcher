@@ -15,6 +15,7 @@ export const StandardButton = ({ text, customStyles, onClick, secondary, childre
   
   return (
     <button
+      data-testid="standard-button"
       className={`
         ${styles.container} 
         ${secondary && styles.secondary_container} 
